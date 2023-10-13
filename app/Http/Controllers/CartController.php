@@ -9,9 +9,15 @@ class CartController extends Controller
     public function cartList()
     {
         $cartItems = \Cart::getContent();
-        // dd($cartItems);
         return view('cart', compact('cartItems'));
     }
+
+    public function showDonationPage()
+    {
+        $cartItems = \Cart::getContent();
+        return view('donation', compact('cartItems'));
+    }
+
 
 
     public function addToCart(Request $request)

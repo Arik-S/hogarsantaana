@@ -14,7 +14,7 @@
 
 
     <section class="mt-24">
-        <h1 class="text-gray-600 text-center text-3xl mb-6">Desea donar alguno de estos productos.</h1>
+        <h1 class="text-gray-600 text-center text-3xl mb-6">Desea donar algunos de estos productos.</h1>
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-8">
             <article>
@@ -70,13 +70,19 @@
     </section>
 
     <section class="mt-24 bg-gray-700 py-12">
-        <h1 class="text-center text-white text-3xl">Ubicación Geográfica</h1>
-        <p class="text-center text-white">Aquí puedes ver nuestra ubicación en el mapa.</p>
-    
-        <div id="map" style="height: 400px;"></div>
-    
-        
+        <div class="container mx-auto">
+            <h1 class="text-center text-white text-3xl mb-4">Ubicación Geográfica</h1>
+            <p class="text-center text-white mb-6">Aquí puedes ver nuestra ubicación en el mapa.</p>
+            
+            <div class="flex justify-center">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3599.9601488436438!2d-54.6567376634344!3d-25.539704329192134!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94f68f9e3f5a4bfd%3A0xe334497a46e7a371!2sHogar%20de%20Ancianos%20San%20Agustin%2C%20Av%20Amado%20Benitez%20Gamarra%2C%20Cd.%20del%20Este!5e0!3m2!1ses-419!2spy!4v1695779710564!5m2!1ses-419!2spy"
+                    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
     </section>
+    
     
 
     {{-- <section class="my-24">

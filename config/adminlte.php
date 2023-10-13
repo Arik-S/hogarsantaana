@@ -63,7 +63,7 @@ return [
     |
     */
 
-    'logo' => '<b>Admin</b>LTE',
+    'logo' => '<b>Hogar </b>San Agustín',
     'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
@@ -253,7 +253,7 @@ return [
     */
 
     'use_route_url' => false,
-    'dashboard_url' => 'home',
+    'dashboard_url' => '/',
     'logout_url' => 'logout',
     'login_url' => 'login',
     'register_url' => 'register',
@@ -312,11 +312,32 @@ return [
             'can'  => 'manage-blog',
         ],
         [
-            'text'        => 'pages',
-            'url'         => 'admin/pages',
-            'icon'        => 'far fa-fw fa-file',
-            'label'       => 4,
-            'label_color' => 'success',
+            'text'        => 'Dashboard',
+            'route'       => 'admin.home',
+            'icon'        => 'fas fa-fw fa-tachometer-alt',
+        ],
+        [
+            'text'        => 'Lista de roles',
+            'route'       => 'admin.roles.index',
+            'icon'        => 'fas fa-fw fa-user-cog',
+            'active'      => ['admin/roles*']
+        ],
+        [
+            'text'        => 'Usuarios',
+            'route'       => 'admin.users.index',
+            'icon'        => 'fas fa-fw fa-users',
+            'active'      => ['admin/users*']
+        ],
+        ['header' => 'OPCIONES DE CONFIGURACIÓN'],
+        [
+            'text'        => 'Background Principal',
+            //'route'       => 'admin.background.index',
+            'icon'        => 'fas fa-fw fa-user-cog',
+        ],
+        [
+            'text'        => 'Productos',
+            'route'       => 'admin.productos.index',
+            'icon'        => 'fas fa-fw fa-user-cog',
         ],
         ['header' => 'account_settings'],
         [
@@ -367,22 +388,18 @@ return [
                 ],
             ],
         ],
-        ['header' => 'labels'],
+        ['header' => 'Opciones de productos'],
         [
-            'text'       => 'important',
-            'icon_color' => 'red',
-            'url'        => '#',
+            'text'       => 'Lista de Productos',
+            //'url'        => 'admin.product.index',
+            'icon'       => 'fas fa-fw fa-clipboard'
         ],
         [
-            'text'       => 'warning',
-            'icon_color' => 'yellow',
-            'url'        => '#',
+            'text'       => 'Crear nuevo producto',
+            'url'        => 'admin/products',
+            'icon'       => 'fas fa-fw fa-file'
         ],
-        [
-            'text'       => 'information',
-            'icon_color' => 'cyan',
-            'url'        => '#',
-        ],
+        
     ],
 
     /*
@@ -537,5 +554,5 @@ return [
     |
     */
 
-    'livewire' => false,
+    'livewire' => true,
 ];
