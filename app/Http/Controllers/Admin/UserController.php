@@ -9,6 +9,13 @@ use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('can:Leer usuarios')->only('index');
+        $this->middleware('can:Editar usuarios')->only('edit', 'update');
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -23,6 +30,7 @@ class UserController extends Controller
     public function edit(User $user)
     {
         $roles = Role::all();
+        
         return view('admin.users.edit', compact('user', 'roles'));
     }
 

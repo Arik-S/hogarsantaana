@@ -146,6 +146,12 @@
                                     {{ __('Profile') }}
                                 </x-dropdown-link>
 
+                                @can('Ver dashboard')
+                                    <x-dropdown-link href="{{ route('admin.home')}}">
+                                        Administrador
+                                    </x-jet-dropdown-link>
+                                @endcan
+
                                 @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
                                     <x-dropdown-link href="{{ route('api-tokens.index') }}">
                                         {{ __('API Tokens') }}
@@ -222,6 +228,12 @@
                     <x-responsive-nav-link href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')">
                         {{ __('Profile') }}
                     </x-responsive-nav-link>
+
+                    @can('Ver dashboard')
+                        <x-responsive-nav-link href="{{ route('admin.home') }}" :active="request()->routeIs('admin.home')">
+                            Administrador
+                        </x-jet-dropdown-link>
+                    @endcan
 
                     @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
                         <x-responsive-nav-link href="{{ route('api-tokens.index') }}" :active="request()->routeIs('api-tokens.index')">
