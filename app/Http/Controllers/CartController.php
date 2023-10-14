@@ -31,7 +31,7 @@ class CartController extends Controller
                 'image' => $request->image,
             )
         ]);
-        session()->flash('success', 'Product is Added to Cart Successfully !');
+        session()->flash('success', '¡El producto se agregó al carrito exitosamente!');
 
         return redirect()->route('cart.list');
     }
