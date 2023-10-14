@@ -15,7 +15,7 @@ class ProductController extends Controller
         return view('products', compact('products'));
     }
 
-    
+
     public function index()
     {
         $products = Product::all();
@@ -23,7 +23,7 @@ class ProductController extends Controller
         return view('admin.productos.index', compact('products'));
     }
 
-     /**
+    /**
      * Show the form for creating a new resource.
      */
     public function create()
@@ -39,17 +39,21 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
-            'permissions' => 'required'
+            'name'          => 'required',
+            'permissions'   => 'required',
+            'description'   => 'required',
+            'image'         => 'required'
         ]);
-        
+
         $product = Product::create([
-            'name' => $request->name
+            'name' => $request->name,
+            'description' => $request->description,
+            'image' => $request->image
         ]);
 
         $product->permissions()->attach($request->permissions);
 
-        return redirect()->route('products')->with('info', 'El producto se creó satisfactoriamente');
+        return redirect()->route('admin.productos.edit', $product)->with('info', 'El producto se creó satisfactoriamente');
     }
 
     /**
@@ -65,9 +69,9 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        $permissions = Permission::all();
-        return view('admin.productos.edit', compact('product', 'permissions'));
+        return view('admin.productos.edit', compact('product'));
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -94,6 +98,6 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         $product->delete();
-        return redirect()->route('products')->with('info', 'El producto se eliminó con éxito');
+        return redirect()->route('admin.productos.index')->with('info', 'El producto se eliminó con éxito');
     }
 }

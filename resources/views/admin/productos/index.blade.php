@@ -45,7 +45,7 @@
                                     <form action="{{ route('admin.productos.destroy', $product) }}" method="POST" style="display: inline;">
                                         @method('delete')
                                         @csrf
-                                        <button class="btn btn-danger" type="submit">Eliminar</button>
+                                        <button class="btn btn-danger btn" type="submit">Eliminar</button>
                                     </form>
                                 </td>
                             </tr>
