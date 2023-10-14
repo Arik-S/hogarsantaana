@@ -44,15 +44,69 @@
                                     <div class="col-md-12">
                                         <table id="lstProductosDonacion"
                                             class="display nowrap table-striped w-100 shadow ">
-                                            <thead class="bg-info text-left fs-6">
+                                            <thead class="bg-info text-left fs-3">
                                                 <tr>
-                                                    <th>Item</th>
-                                                    <th>Nombre Producto</th>
-                                                    <th>Cantidad</th>
-                                                    <th class="text-center">Opciones</th>
+                                                    <th class="text-center">Imagen</th>
+                                                    <th class="text-center">Nombre Producto</th>
+                                                    <th class="text-center">Cantidad</th>
+                                                    <th class="text-center">Actualizar</th>
+                                                    <th class="text-center">Eliminar</th>
                                                 </tr>
                                             </thead>
                                             <tbody class="small text-left fs-6">
+                                                @foreach ($cartItems as $item)
+                                                    <!--  $cartItems tiene toda la información optenida -->
+                                                    <tr>
+                                                        <td class="hidden pb-4 md:table-cell">
+                                                            <a href="#">
+                                                                <img src="{{ $item->attributes->image }}"
+                                                                    class="w-10 h-10 rounded"
+                                                                    alt="Thumbnail"><!-- maneja el tamaño de la imagen -->
+                                                            </a>
+                                                        </td>
+                                                        <td>
+                                                            <a href="#">
+                                                                <p class="mb-2 md:ml-4 text-purple-600 font-bold">
+                                                                    {{ $item->name }}</p>
+
+                                                            </a>
+                                                        </td>
+                                                        <td class="justify-center mt-6 md:justify-end md:flex">
+                                                            <div class="h-auto w-auto">
+                                                                <div class="relative flex flex-row w-full h-8">
+                                                                    <form action="{{ route('cart.update') }}"
+                                                                        method="POST">
+                                                                        @csrf
+                                                                        <input type="hidden" name="id"
+                                                                            value="{{ $item->id }}">
+                                                                        <input type="number" name="quantity"
+                                                                            value="{{ $item->quantity }}"
+                                                                            class="w-16 text-center h-6 text-gray-800 outline-none rounded border border-blue-600" />
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td class="hidden text-right md:table-cell">
+                                                            <form action="{{ route('cart.update') }}" method="POST">
+                                                                @csrf
+                                                                <input type="hidden" value="{{ $item->id }}"
+                                                                    name="id">
+                                                                <button
+                                                                    class="px-4 py-2 rounded-full shadow text-white bg-violet-500">Actualizar</button>
+                                                            </form>
+                                                        </td>
+                                                        <td class="hidden text-right md:table-cell">
+                                                            <form action="{{ route('cart.remove') }}" method="POST">
+                                                                @csrf
+                                                                <input type="hidden" value="{{ $item->id }}"
+                                                                    name="id">
+                                                                <button
+                                                                    class="px-4 py-2 text-white bg-red-600 shadow rounded-full">Eliminar</button>
+                                                            </form>
+
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
                                             </tbody>
                                         </table>
                                         <!-- / table -->
@@ -135,14 +189,17 @@
                     "data": "Cantidad"
                 },
                 {
-                    "data": "Acciones"
+                    "data": "Actualizar"
+                },
+                {
+                    "data": "Eliminar"
                 }
             ],
-            columnDefs: [{
+            /*columnDefs: [{
                 //ocula la columna
                 targets: 0,
                 visible: false
-            }],
+            }],*/
             "order": [
                 [0, 'desc']
             ],
