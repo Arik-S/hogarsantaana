@@ -1,2 +1,7 @@
+<<<<<<< HEAD
 \vendor
 composer.lock
+=======
+/vendor/
+composer.lock
+>>>>>>> e70d1d8975e2dc8d827db14935a6909592886642
