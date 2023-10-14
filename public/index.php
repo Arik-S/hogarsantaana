@@ -3,6 +3,15 @@
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Http\Request;
 
+?>
+
+<head>
+
+  <title>Hogar San Agustin</title>
+  <link rel="shortcut icon" href="img/SCV.png" type="image/x-icon">
+</head>
+<?php
+
 define('LARAVEL_START', microtime(true));
 
 /*

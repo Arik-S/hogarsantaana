@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800">
-            {{ __('Carrito') }}
+            {{ __('Carritos') }}
         </h2>
     </x-slot>
             <main class="my-8">
@@ -15,7 +15,7 @@
                                 <p class="text-green-800">{{ $message }}</p>
                             </div>
                         @endif
-                          <h3 class="text-3xl font-bold">Carrito</h3>
+                          <h3 class="text-3xl font-bold">Productos para Donaciones</h3>
                         <div class="flex-1">
                           <table class="w-full text-sm lg:text-base" cellspacing="0">
                             <thead>
