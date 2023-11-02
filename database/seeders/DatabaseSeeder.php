@@ -19,8 +19,6 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
-        Storage::deleteDirectory('articulos');
-        Storage::makeDirectory('articulos');
 
         $this->call(PermissionSeeder::class);
         $this->call(RoleSeeder::class);

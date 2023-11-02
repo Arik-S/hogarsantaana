@@ -18,3 +18,4 @@ Route::resource('productos', ProductController::class)->names('productos');
 Route::resource('users', UserController::class)->only(['index', 'edit', 'update'])->names('users');
 
 
+//Route::resource('admin/productos', 'ProductController')->names('productos');

@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Nursing Home')
+@section('title', 'Hogar San Agustín')
 
 @section('content_header')
     <h1>Hogar San Agustín</h1>

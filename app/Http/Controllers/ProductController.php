@@ -4,10 +4,21 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Livewire\WithPagination;
+use Illuminate\Support\Facades\Storage;
 use Spatie\Permission\Models\Permission;
 
 class ProductController extends Controller
 {
+
+    use WithPagination;
+
+    protected $paginationTheme = "bootstrap";
+
+    public $search;
+
+    public $page = 1; // Agrega esta propiedad para manejar la paginación
+
     public function productList()
     {
         $products = Product::all();
@@ -18,7 +29,13 @@ class ProductController extends Controller
 
     public function index()
     {
-        $products = Product::all();
+        /*$products = Product::all();
+
+        return view('admin.productos.index', compact('products'));*/
+
+        $products = Product::where('name', 'LIKE', '%' . $this->search . '%')
+            ->orWhere('description', 'LIKE', '%' . $this->search . '%')
+            ->paginate(20);
 
         return view('admin.productos.index', compact('products'));
     }
@@ -28,9 +45,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $permissions = Permission::all();
+        //$permissions = Permission::all();
 
-        return view('admin.productos.create', compact('permissions'));
+        return view('admin.productos.create');
     }
 
     /**
@@ -39,22 +56,23 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name'          => 'required',
-            'permissions'   => 'required',
-            'description'   => 'required',
-            'image'         => 'required'
+            'name' => 'required',
+            'description' => 'required',
+            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Reglas de validación para la imagen
         ]);
+        $imagePath = $request->file('image')->store('public/productos');
 
         $product = Product::create([
             'name' => $request->name,
             'description' => $request->description,
-            'image' => $request->image
-        ]);
-
-        $product->permissions()->attach($request->permissions);
+            'image' => $imagePath,
+        ]);        
 
         return redirect()->route('admin.productos.edit', $product)->with('info', 'El producto se creó satisfactoriamente');
     }
+
+
+
 
     /**
      * Display the specified resource.
@@ -67,9 +85,10 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Product $product)
+    public function edit(Product $producto)
     {
-        return view('admin.productos.edit', compact('product'));
+        // return view('admin.productos.edit', compact('product'));
+        return view('admin.productos.edit', compact('producto'));
     }
 
 
@@ -80,24 +99,49 @@ class ProductController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'permissions' => 'required'
+            'description' => 'required',
+            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Reglas de validación para la imagen
         ]);
 
-        $product->update([
-            'name' => $request->name
-        ]);
+        // Actualizar los campos de nombre y descripción
+       
 
-        $product->permissions()->sync($request->permissions);
+        if ($request->hasFile('image')) {
+            // Subir la nueva imagen a la carpeta 'public/productos'
+            $imagePath = $request->file('image')->store('public/productos');
+        }
+        
+        $product->name = $request->name;
+        $product->description = $request->description;
+        $product->image = $imagePath;
+        // Guardar los cambios en el producto
+        $product->save();
 
-        return redirect()->route('admin.productos.edit', $product);
+        return redirect()->route('admin.productos.edit', $product)->with('info', 'El producto se actualizó satisfactoriamente');
     }
+
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Product $product)
+    public function destroy(Product $producto)
     {
-        $product->delete();
-        return redirect()->route('admin.productos.index')->with('info', 'El producto se eliminó con éxito');
+        // Verifica si el producto existe
+        if ($producto) {
+            // Elimina el producto
+            $producto->delete();
+
+            // Redirige al listado de productos o a donde desees
+            return redirect()->route('admin.productos.index')->with('info', 'El producto se eliminó con éxito');
+        } else {
+            // Manejo de error si el producto no existe
+            return redirect()->route('admin.productos.index')->with('error', 'El producto no se pudo eliminar');
+        }
+    }
+
+
+    public function limpiar_page()
+    {
+        $this->reset('page');
     }
 }

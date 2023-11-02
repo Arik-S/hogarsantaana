@@ -16,6 +16,8 @@ class AdminUsers extends Component
 
     public $search;
 
+    public $page = 1; // Agrega esta propiedad para manejar la paginación
+
     public function render()
     {
         $users = User::where('name', 'LIKE', '%' . $this->search . '%')

@@ -17,6 +17,10 @@
         <div class="card-header">
             <a href="{{ route('admin.productos.create') }}" class="btn btn-primary">Crear Producto</a>
         </div>
+        <div class="card-header">
+            <input wire:keydown="limpiar_page" wire:model="search" class="form-control w-100" placeholder="Escriba un nombre ...">
+        </div>
+        
 
         <div class="card-body">
             <div class="table-responsive">
@@ -38,8 +42,8 @@
                                 <td>{{ $product->name }}</td>
                                 <td>{{ $product->description }}</td>
                                 <td>
-                                    <img src="{{ $product->image }}" alt="{{ $product->name }}" class="product-image">
-                                </td>
+                                    <img src="{{ asset('storage/' . $product->image) }}" height="100px" width="100px" alt="">
+                                </td>                                
                                 <td>
                                     <a href="{{ route('admin.productos.edit', $product) }}" class="btn btn-info">Editar</a>
                                     <form action="{{ route('admin.productos.destroy', $product) }}" method="POST" style="display: inline;">
@@ -56,9 +60,13 @@
                         @endforelse
                     </tbody>
                 </table>
+                
             </div>
+            
         </div>
+       
     </div>
+
 @stop
 
 @section('css')
