@@ -1,6 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* En tu archivo CSS o en un bloque <style> en tu documento HTML */
+.carousel-image {
+    max-width: 100%; /* Ajusta el ancho máximo según tus necesidades */
+    max-height: 100%; /* Ajusta la altura máxima según tus necesidades */
+}
 
 [x-cloak] {
     display: none;

@@ -7,12 +7,14 @@
                   
     </section>
     
-    <section class="mt-24 bg-white-700 py-12">
-        <div class="container mx-auto">
-            <h1 class="text-center text-black text-3xl mb-4">Gracias por su donación</h1>
+    <<section class="bg-cover grid gap-4">
+        
+        <div class="flex items-center justify-center">
+            <img class="max-w-lg max-h-64" src="{{ asset('img/gracias-por-tu-donacion.svg') }}" alt="image description">
         </div>
+        
     </section>
-
+    
 
     
     @include('footer')

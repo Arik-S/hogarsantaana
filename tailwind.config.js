@@ -7,8 +7,10 @@ export default {
     content: [
         './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
         './vendor/laravel/jetstream/**/*.blade.php',
+        "./resources/**/*.js",
         './storage/framework/views/*.php',
         './resources/views/**/*.blade.php',
+        "./node_modules/flowbite/**/*.js"
     ],
 
     theme: {
@@ -19,5 +21,9 @@ export default {
         },
     },
 
-    plugins: [forms, typography],
+    plugins: [
+        forms, 
+        typography,
+        require('flowbite/plugin')
+    ],
 };

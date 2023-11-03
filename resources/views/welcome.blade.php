@@ -9,8 +9,7 @@
     
     <section class="mt-24 bg-white-700 py-12">
         <div class="container mx-auto">
-            <h1 class="text-center text-white text-3xl mb-4">Galería</h1>
-            <p class="text-center text-white mb-6">Conocenos</p>
+            <h1 class="text-center text-black text-3xl mb-4">Galería</h1>
             
             <div class="flex justify-center">
                 @include('gallery')

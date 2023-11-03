@@ -21,7 +21,7 @@
                                                 <p class="text-green-800">{{ $message }}</p>
                                             </div>
                                         @endif
-                                        <h3 class="text-3xl font-bold text-center">Productos para Donaciones</h3>
+                                        <h3 class="text-3xl font-bold text-center">Tu lista de Donaciones</h3>
                                     </div>
 
                                     <div class="col-md-12">
@@ -44,15 +44,6 @@
                                                         @csrf
                                                         <button class="btn btn-danger" id="btnVaciarListado">
                                                             <i class="fas fa-trash"></i> Vaciar Listado
-                                                        </button>
-                                                    </form>
-                                                </div>
-                                                <div class="text-right mr-2">
-                                                    <!--  TERMINA EL PROCESO -->
-                                                    <form action="{{ route('cart.store') }}" method="POST">
-                                                        @csrf
-                                                        <button class="btn btn-primary" id="btnTerminarDonacion">
-                                                            <i class="fas fa-shopping-bag"></i> Guardar Donacion
                                                         </button>
                                                     </form>
                                                 </div>
@@ -165,10 +156,9 @@
                                                 <i class="fas fa-file-alt fs-6"></i>
                                                 <span class="small">Número de teléfono</span><span class="text-danger">*</span>
                                             </label>
-                                            <input type="tel" name="phone_number" id="phone_number" class="form-control" required>
-                                        </div>
+                                            <input type="text" name="phone_number" id="phone_number" class="form-control" required inputmode="numeric" pattern="[0-9]*">
+                                        </div>                                        
                                     
-                                        <button type="submit" class="btn btn-primary">Confirmar Donación</button>
                                     </form>
                                     
                                     
@@ -176,6 +166,15 @@
                                     <span id="validate_categoria" class="text-danger small fst-italic" style="display:none">
                                         Debe Seleccionar tipo de Entrega
                                     </span>
+                                    @if ($errors->any())
+                                        <div class="alert alert-danger">
+                                            <ul>
+                                                @foreach ($errors->all() as $error)
+                                                    <li>{{ $error }}</li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    @endif
 
                                 </div>
                             </div>
