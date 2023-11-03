@@ -11,13 +11,6 @@ use Spatie\Permission\Models\Permission;
 class ProductController extends Controller
 {
 
-    use WithPagination;
-
-    protected $paginationTheme = "bootstrap";
-
-    public $search;
-
-    public $page = 1; // Agrega esta propiedad para manejar la paginación
 
     public function productList()
     {
@@ -29,13 +22,7 @@ class ProductController extends Controller
 
     public function index()
     {
-        /*$products = Product::all();
-
-        return view('admin.productos.index', compact('products'));*/
-
-        $products = Product::where('name', 'LIKE', '%' . $this->search . '%')
-            ->orWhere('description', 'LIKE', '%' . $this->search . '%')
-            ->paginate(20);
+        $products = Product::all();
 
         return view('admin.productos.index', compact('products'));
     }
@@ -139,9 +126,4 @@ class ProductController extends Controller
         }
     }
 
-
-    public function limpiar_page()
-    {
-        $this->reset('page');
-    }
 }

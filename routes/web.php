@@ -34,7 +34,7 @@ Route::middleware([
 
 Route::get('quienessomos',[QuienesSomosController::class, 'index'])->name('quienessomos.index');
 
-Route::get('donaciones',[DonationController::class, 'index'])->name('donaciones.index');
+Route::get('finish-donation',[DonationController::class, 'index'])->name('finish-donation.index');
 
 Route::get('products', [ProductController::class, 'productList'])->name('products.list');
 Route::get('cart', [CartController::class, 'cartList'])->name('cart.list');
@@ -42,10 +42,13 @@ Route::post('cart', [CartController::class, 'addToCart'])->name('cart.store');
 Route::post('update-cart', [CartController::class, 'updateCart'])->name('cart.update');
 Route::post('remove', [CartController::class, 'removeCart'])->name('cart.remove');
 Route::post('clear', [CartController::class, 'clearAllCart'])->name('cart.clear');
+Route::post('finish', [CartController::class, 'storeCart'])->name('cart.finish');
 
-Route::get('carrito/{cart}', function ($cart){
-    return "Aqui se mostrará la lista información del carrito";
-})->name('donaciones.show');
+Route::get('finish', function () {
+    return view('finish-donation');
+})->name('cart.finish');
+
+
 
 Route::get('/donation', function () {
     return view('donation');

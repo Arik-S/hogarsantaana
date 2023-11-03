@@ -19,10 +19,14 @@
             {!! Form::model($producto, ['route' => ['admin.productos.update', $producto], 'enctype' => 'multipart/form-data']) !!}
             @method('PUT')
             <!-- Utiliza @method('PUT') para indicar el método HTTP PUT -->
-    
+            @csrf
             @error('permissions')
                 <span class="text-danger">{{ $message }}</span>
             @enderror
+            <div class="form-group">
+                {!! Form::label('id', 'Id') !!}
+                {!! Form::text('id', null, ['class' => 'form-control', 'readonly' => 'readonly']) !!}
+            </div>
             <div class="form-group">
                 {!! Form::label('name', 'Nombre') !!}
                 {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Ingrese el nombre del producto']) !!}
