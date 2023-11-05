@@ -14,8 +14,9 @@ return new class extends Migration
         Schema::create('donations', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
+            $table->string('user_name');
             $table->unsignedBigInteger('product_id');
-            $table->string('name');
+            $table->string('product_name');
             $table->integer('quantity');
             $table->integer('delivery_method')->nullable();
             $table->string('phone_number')->nullable();

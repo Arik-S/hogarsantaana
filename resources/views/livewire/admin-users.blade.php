@@ -29,8 +29,8 @@
                 </table>
             </div>
 
-            <div class="card-footer">
-                {{$users->links()}}
+            <div class="card-footer">   
+                {{$users->links('pagination::bootstrap-4')}}
             </div>
         @else
             <div class="card-body">

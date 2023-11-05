@@ -1,22 +1,17 @@
 @extends('adminlte::page')
 
-@section('title', 'Nursing Home')
+@section('title', 'Hogar San Agustín')
 
 @section('content_header')
-    <h1>Lista de Productos</h1>
+    <h1>Hogar San Agustín</h1>
 @stop
 
 @section('content')
-    @livewire('admin-products')
+    <p>Welcome to this beautiful admin panel.</p>
 @stop
 
 @section('css')
     <link rel="stylesheet" href="/css/admin_custom.css">
-    <style>
-        .product-image {
-            max-width: 100px;
-        }
-    </style>
 @stop
 
 @section('js')

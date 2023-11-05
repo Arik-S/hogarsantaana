@@ -16,9 +16,9 @@
 
     <div class="card">
         <div class="card-body">
-            {!! Form::model($producto, ['route' => ['admin.productos.update', $producto], 'enctype' => 'multipart/form-data']) !!}
+            {!! Form::model($producto, ['route' => ['admin.productos.update', $producto], 'enctype' => 'multipart/form-data', 'method' => 'put']) !!}
             @method('PUT')
-            <!-- Utiliza @method('PUT') para indicar el método HTTP PUT -->
+            
             @csrf
             @error('permissions')
                 <span class="text-danger">{{ $message }}</span>
@@ -60,7 +60,11 @@
                     <p>No hay imagen actual para este producto.</p>
                 @endif
             </div>            
-    
+            
+            <div class="form-group">
+                {!! Form::label('status', 'Estado') !!}
+                {!! Form::select('status', ['0' => 'Activo', '1' => 'Desactivado'], null, ['class' => 'form-control']) !!}
+            </div>
             {!! Form::submit('Actualizar Producto', ['class' => 'btn btn-primary mt-2']) !!}
             {!! Form::close() !!}
         </div>

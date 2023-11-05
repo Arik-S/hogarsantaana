@@ -9,7 +9,7 @@ class Donation extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'product_id', 'name', 'quantity', 'delivery_method', 'phone_number'];
+    protected $fillable = ['user_id', 'user_name', 'product_id', 'product_name', 'quantity', 'delivery_method', 'phone_number', 'status'];
 
     public function user()
     {
@@ -20,4 +20,5 @@ class Donation extends Model
     {
         return $this->belongsTo(Product::class);
     }
+    
 }

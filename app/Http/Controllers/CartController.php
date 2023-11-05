@@ -83,7 +83,7 @@ class CartController extends Controller
     {
         $user = Auth::user(); // Obtiene el usuario autenticado
         $user_id = $user->id; // Obtiene el ID del usuario autenticado
-        
+        $user_name = $user->name;
         // Define las reglas de validación
         $rules = [
             'delivery_method' => 'required|in:1,2',
@@ -114,8 +114,9 @@ class CartController extends Controller
         foreach ($cartItems as $cartItem) {
             Donation::create([
                 'user_id' => $user_id,
+                'user_name' => $user_name,
                 'product_id' => $cartItem->id, // Asegúrate de tener el campo correcto
-                'name' => $cartItem->name, // Asegúrate de tener el campo correcto
+                'product_name' => $cartItem->name, // Asegúrate de tener el campo correcto
                 'quantity' => $cartItem->quantity,
                 'delivery_method' => $request->input('delivery_method'), // Captura el método de entrega del formulario
                 'phone_number' => $request->input('phone_number'), // Captura el método de entrega del formulario

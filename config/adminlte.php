@@ -64,7 +64,7 @@ return [
     */
 
     'logo' => '<b>Hogar </b>San Agustín',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+    'logo_img' => 'img/HSA.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
@@ -333,77 +333,19 @@ return [
             'can'         =>  'Leer usuarios',
             'active'      => ['admin/users*']
         ],
-        ['header' => 'OPCIONES DE CONFIGURACIÓN'],
-        [
-            'text'        => 'Background Principal',
-            //'route'       => 'admin.background.index',
-            'icon'        => 'fas fa-fw fa-user-cog',
-        ],
+        ['header' =>    'Cargar Producto'],
         [
             'text'        => 'Productos',
             'route'       => 'admin.productos.index',
-            'icon'        => 'fas fa-fw fa-user-cog',
+            'icon'        => 'fas fa-cubes info-box-icon',
         ],
-        ['header' => 'account_settings'],
+        ['header' => 'Ver Donaciones'],
         [
-            'text' => 'profile',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-user',
+            'text'        => 'Lista de Donaciones',
+            'route'       => 'admin.donation.index',
+            'icon'        => 'fas fa-fw fa-file',
         ],
-        [
-            'text' => 'change_password',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
-        ],
-        [
-            'text'    => 'multilevel',
-            'icon'    => 'fas fa-fw fa-share',
-            'submenu' => [
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
-                [
-                    'text'    => 'level_one',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'level_two',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'level_two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
-            ],
-        ],
-        ['header' => 'Opciones de productos'],
-        [
-            'text'       => 'Lista de Productos',
-            //'url'        => 'admin.product.index',
-            'icon'       => 'fas fa-fw fa-clipboard'
-        ],
-        [
-            'text'       => 'Crear nuevo producto',
-            'url'        => 'admin/products',
-            'icon'       => 'fas fa-fw fa-file'
-        ],
+
         
     ],
 

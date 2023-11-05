@@ -14,9 +14,9 @@ class ProductController extends Controller
 
     public function productList()
     {
-        $products = Product::all();
+        $activeProducts = Product::where('status', 0)->get();
 
-        return view('products', compact('products'));
+        return view('products', ['products' => $activeProducts]);
     }
 
 
@@ -82,30 +82,37 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, Product $producto)
     {
         $request->validate([
             'name' => 'required',
             'description' => 'required',
             'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Reglas de validación para la imagen
+            'status' => 'required',
         ]);
-
+    
         // Actualizar los campos de nombre y descripción
-       
-
+        $producto->name = $request->name;
+        $producto->description = $request->description;
+    
         if ($request->hasFile('image')) {
-            // Subir la nueva imagen a la carpeta 'public/productos'
+            // Almacenar la nueva imagen y actualizar el campo 'image'
             $imagePath = $request->file('image')->store('public/productos');
+            $producto->image = $imagePath;
         }
         
-        $product->name = $request->name;
-        $product->description = $request->description;
-        $product->image = $imagePath;
-        // Guardar los cambios en el producto
-        $product->save();
-
-        return redirect()->route('admin.productos.edit', $product)->with('info', 'El producto se actualizó satisfactoriamente');
+        $producto->status = $request->status;
+        // Guardar los cambios en el producto utilizando update
+        $producto->update([
+            'name' => $producto->name,
+            'description' => $producto->description,
+            'image' => $producto->image,
+            'status' => $producto->status,
+        ]);
+    
+        return redirect()->route('admin.productos.edit', $producto)->with('info', 'El producto se actualizó satisfactoriamente');
     }
+    
 
 
     /**
