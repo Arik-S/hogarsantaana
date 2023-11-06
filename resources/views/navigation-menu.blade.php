@@ -288,11 +288,11 @@
         @else
             <div class="py-1 border-t border-gray-200">
                 <x-responsive-nav-link href="{{route('login')}}" :active="request()->routeIs('login')">
-                    Login
+                    Iniciar Sesión
                 </x-responsive-nav-link>
 
                 <x-responsive-nav-link href="{{route('register')}}" :active="request()->routeIs('register')">
-                    Register
+                    Registrarse
                 </x-responsive-nav-link>
             </div>
         @endauth
